@@ -1,0 +1,26 @@
+CONFIGURACIÓN DE SW2 
+
+Configuración inicial igual a SW1:
+
+* hostname
+* dominio
+* SSH
+* usuarios
+
+VLANs
+Se crean VLAN 300, 500 y 999.
+
+Troncales
+Se configuran enlaces trunk y EtherChannel.
+
+Puertos de acceso
+Se asignan puertos a VLAN 300.
+
+VLAN 999
+Se configura IP de administración.
+
+ip default-gateway
+Define salida de gestión.
+
+Función:
+Switch de acceso para usuarios.

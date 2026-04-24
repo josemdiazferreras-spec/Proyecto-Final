@@ -1,0 +1,91 @@
+🖧 Proyecto de Redes: VLAN + HSRP + DHCP + Seguridad
+📌 Descripción
+
+Este proyecto implementa una topología de red empresarial que integra segmentación mediante VLANs, alta disponibilidad con HSRP, asignación automática de direcciones IP (DHCP), enrutamiento estático, agregación de enlaces (LACP) y seguridad en switches.
+
+La red está diseñada para garantizar conectividad total, redundancia y administración eficiente de usuarios y servicios.
+
+🗺️ Topología de Red
+
+La red se divide en dos segmentos principales:
+
+🔹 Red de Usuarios
+Routers: R1 y R4
+Switches: SW1 (principal) y SW2 (acceso)
+VLANs:
+VLAN 300 → Estudiantes
+VLAN 500 → Académicos
+VLAN 999 → Administrativa
+Protocolo HSRP para alta disponibilidad:
+R4 → Router activo
+R1 → Router de respaldo
+🔹 Red de Servicios
+Router R3:
+Servidor DHCP
+DNS / WEB
+Dispositivos:
+Switch de acceso
+Controlador inalámbrico (WLC)
+Puntos de acceso (APs)
+Laptops
+🔹 Core de la Red
+Router R2:
+Interconecta todos los routers
+Permite comunicación entre redes
+⚙️ Tecnologías Implementadas
+SSH (Acceso remoto seguro)
+VLANs (Segmentación de red)
+Router on a Stick (Inter-VLAN Routing)
+HSRP (Alta disponibilidad)
+Spanning Tree (Optimización de red)
+DHCP (Asignación automática de IP)
+Enrutamiento estático
+EtherChannel con LACP
+Seguridad:
+Port Security
+DHCP Snooping
+Redes inalámbricas con WPA2
+🔐 Configuración de Seguridad
+Acceso remoto mediante SSH v2
+Usuarios configurados:
+matricula
+opelegrino
+Seguridad en switches:
+Port Security (MAC sticky)
+DHCP Snooping
+Redes WiFi protegidas con:
+WPA2-Personal
+Contraseña: Cisco123
+📡 Redes Inalámbricas
+
+Se configuraron tres perfiles:
+
+Duarte
+Mella
+Sánchez
+
+Distribución:
+
+AP-BIBLIOTECA → Duarte y Sánchez
+AP-LOBBY → Mella y Duarte
+🌐 Direccionamiento IP
+VLAN 300 → 192.168.30.0/24
+VLAN 500 → 192.168.50.0/24
+VLAN 999 → 192.168.99.0/24
+Red de servicios → 192.168.32.0/24
+Enlaces WAN → 192.168.100.0/30
+🔄 Alta Disponibilidad (HSRP)
+Gateway virtual: primera IP de cada VLAN
+R4:
+Mayor prioridad
+Router activo
+R1:
+Router de respaldo
+Uso de preempt para recuperación automática
+🔗 EtherChannel (LACP)
+
+Se configuró entre SW1 y SW2 para:
+
+Incrementar ancho de banda
+Proveer redundancia
+Evitar loops

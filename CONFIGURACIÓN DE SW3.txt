@@ -1,0 +1,68 @@
+CONFIGURACIÓN DE SW3 
+
+enable / conf t
+Acceso a configuración.
+
+hostname SW3
+Nombre.
+
+ip domain-name
+Dominio.
+
+crypto key generate rsa
+Claves SSH.
+
+ip ssh version 2
+SSH seguro.
+
+username
+Usuarios.
+
+line vty
+Acceso remoto.
+
+login local
+Autenticación.
+
+transport input ssh
+Solo SSH.
+
+int range f0/1-24, g0/1-2
+Apaga todos los puertos.
+
+shutdown
+Desactiva.
+
+int range f0/1-4, g0/1-2
+Activa puertos necesarios.
+
+no shutdown
+Activa.
+
+int range f0/1-3
+Configura seguridad de puertos.
+
+switchport port-security
+Activa seguridad.
+
+maximum 5
+Limita MAC.
+
+mac-address sticky
+Aprende MAC automáticamente.
+
+violation restrict
+Bloquea sin apagar puerto.
+
+ip dhcp snooping limit rate 5
+Limita solicitudes DHCP.
+
+int range f0/4, g0/1-2
+Puertos confiables.
+
+ip dhcp snooping trust
+Permite DHCP.
+
+end
+wr
+Guarda.

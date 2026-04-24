@@ -1,0 +1,102 @@
+CONFIGURACIÓN DE R1 
+
+enable
+Permite entrar al modo privilegiado del router.
+
+conf t
+Accede al modo de configuración global.
+
+hostname R1
+Asigna el nombre R1 al dispositivo para su identificación.
+
+ip domain-name iltla.edu.do
+Define el dominio del router, necesario para generar claves RSA.
+
+crypto key generate rsa general-key
+Genera las claves criptográficas utilizadas para habilitar SSH.
+
+ip ssh version 2
+Activa la versión 2 de SSH, que es más segura.
+
+username 20250693 secret Fe2024
+Crea un usuario local con contraseña cifrada.
+
+username opelegrino secret Fe2024
+Crea un segundo usuario para acceso remoto.
+
+line vty 0 4
+Accede a la configuración de las líneas virtuales para acceso remoto.
+
+login local
+Indica que se utilizarán los usuarios locales para autenticación.
+
+transport input ssh
+Permite únicamente conexiones SSH (bloquea Telnet).
+
+exit
+Sale del modo de configuración de líneas VTY.
+
+interface GigabitEthernet0/0
+Selecciona la interfaz física que conecta con el switch.
+
+no shutdown
+Activa la interfaz.
+
+exit
+Sale del modo de configuración de interfaz.
+
+interface GigabitEthernet0/0.300
+Crea una subinterfaz para la VLAN 300.
+
+encapsulation dot1Q 300
+Asocia la subinterfaz con la VLAN 300.
+
+ip address 192.168.30.2 255.255.255.0
+Asigna dirección IP a la subinterfaz (gateway de la VLAN).
+
+ip helper-address 192.168.32.1
+Reenvía solicitudes DHCP hacia el servidor DHCP.
+
+standby 1 ip 192.168.30.1
+Configura la IP virtual del grupo HSRP.
+
+standby 1 priority 90
+Define la prioridad del router (menor que R4).
+
+standby 1 preempt
+Permite que el router recupere el rol activo si vuelve a estar disponible.
+
+no shutdown
+Activa la subinterfaz.
+
+exit
+Sale de la subinterfaz.
+
+(interface .500 y .999 siguen el mismo concepto para sus VLANs)
+
+interface GigabitEthernet0/1
+Selecciona la interfaz que conecta con R2.
+
+ip address 192.168.100.1 255.255.255.252
+Asigna IP para enlace punto a punto.
+
+no shutdown
+Activa la interfaz.
+
+exit
+Sale del modo de interfaz.
+
+ip route 192.168.32.0 255.255.255.0 192.168.100.2
+Define ruta estática hacia la red 32 a través de R2.
+
+ip route 192.168.100.4 255.255.255.252 192.168.100.2
+Ruta hacia red WAN adicional.
+
+ip route 192.168.100.8 255.255.255.252 192.168.100.2
+Otra ruta WAN.
+
+end
+Sale del modo configuración.
+
+wr
+Guarda la configuración en memoria.

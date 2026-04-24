@@ -1,0 +1,89 @@
+CONFIGURACIÓN DE SW1 
+
+enable
+Modo privilegiado.
+
+conf t
+Modo configuración.
+
+hostname SW1
+Nombre del switch.
+
+ip domain-name iltla.edu.do
+Dominio.
+
+crypto key generate rsa general-key
+Claves RSA.
+
+ip ssh version 2
+Activa SSH.
+
+username
+Usuarios locales.
+
+line vty 0 15
+Líneas remotas.
+
+login local
+Autenticación.
+
+transport input ssh
+Solo SSH.
+
+exit
+Sale.
+
+vlan 300
+Crea VLAN estudiantes.
+
+name Estudiantes
+Nombre.
+
+exit
+Sale.
+
+vlan 500
+Crea VLAN académicos.
+
+vlan 999
+Crea VLAN administrativa.
+
+spanning-tree vlan 300 priority 4096
+Define este switch como root.
+
+interface GigabitEthernet0/2
+Enlace trunk.
+
+switchport mode trunk
+Modo troncal.
+
+switchport trunk native vlan 999
+VLAN nativa.
+
+switchport trunk allowed vlan 300,500,999
+Permite VLANs.
+
+no shutdown
+Activa.
+
+exit
+Sale.
+
+interface range FastEthernet0/23 - 24
+EtherChannel.
+
+channel-group 1 mode active
+Agrupa enlaces.
+
+interface vlan 999
+Interfaz de administración.
+
+ip address 192.168.99.10 255.255.255.0
+IP gestión.
+
+ip default-gateway 192.168.99.1
+Gateway.
+
+end
+wr
+Guarda.

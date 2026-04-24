@@ -1,0 +1,99 @@
+CONFIGURACIÓN DE R3 
+
+enable
+Accede al modo privilegiado.
+
+conf t
+Modo configuración.
+
+hostname R3-C
+Nombre del router.
+
+ip domain-name iltla.edu.do
+Dominio para SSH.
+
+crypto key generate rsa general-key
+Genera claves.
+
+ip ssh version 2
+Activa SSH.
+
+username 20250693 secret Fe2024
+Usuario local.
+
+username opelegrino secret Fe2024
+Segundo usuario.
+
+line vty 0 4
+Líneas remotas.
+
+login local
+Autenticación local.
+
+transport input ssh
+Solo SSH.
+
+exit
+Sale.
+
+ip dhcp excluded-address 192.168.30.1 192.168.30.10
+Reserva direcciones en VLAN 300.
+
+ip dhcp excluded-address 192.168.50.1 192.168.50.10
+Reserva en VLAN 500.
+
+ip dhcp excluded-address 192.168.99.1 192.168.99.10
+Reserva en VLAN 999.
+
+ip dhcp excluded-address 192.168.32.1 192.168.32.10
+Reserva en red LAN.
+
+ip dhcp pool VLAN300
+Crea pool DHCP.
+
+network 192.168.30.0 255.255.255.0
+Define red.
+
+default-router 192.168.30.1
+Gateway.
+
+dns-server 192.168.32.5
+DNS.
+
+exit
+Sale.
+
+(Se repite el mismo proceso para VLAN500, VLAN999 y VLAN32)
+
+interface GigabitEthernet0/0
+Interfaz LAN.
+
+ip address 192.168.32.1 255.255.255.0
+IP de red local.
+
+no shutdown
+Activa.
+
+exit
+Sale.
+
+interface Serial0/0/0
+Conexión a R2.
+
+ip address 192.168.100.5 255.255.255.252
+IP enlace.
+
+no shutdown
+Activa.
+
+exit
+Sale.
+
+ip route ...
+Define rutas hacia VLANs vía R2.
+
+end
+Sale.
+
+wr
+Guarda.

@@ -1,0 +1,93 @@
+CONFIGURACIÓN DE R4 
+
+enable
+Modo privilegiado.
+
+conf t
+Modo configuración.
+
+hostname R4-C
+Nombre del router.
+
+ip domain-name iltla.edu.do
+Dominio.
+
+crypto key generate rsa general-key
+Claves RSA.
+
+ip ssh version 2
+SSH seguro.
+
+username
+Usuarios locales.
+
+line vty 0 4
+Acceso remoto.
+
+login local
+Autenticación.
+
+transport input ssh
+Solo SSH.
+
+exit
+Sale.
+
+interface GigabitEthernet0/1
+Interfaz principal.
+
+no shutdown
+Activa.
+
+exit
+Sale.
+
+interface GigabitEthernet0/1.300
+Subinterfaz VLAN 300.
+
+encapsulation dot1Q 300
+Etiqueta VLAN.
+
+ip address 192.168.30.3 255.255.255.0
+Gateway.
+
+ip helper-address 192.168.32.1
+DHCP remoto.
+
+standby 1 ip 192.168.30.1
+Gateway virtual.
+
+standby 1 priority 110
+Mayor prioridad (activo).
+
+standby 1 preempt
+Recupera control.
+
+no shutdown
+Activa.
+
+exit
+Sale.
+
+(Se repite para VLAN 500 y 999)
+
+interface Serial0/0/0
+Enlace a R2.
+
+ip address 192.168.100.9 255.255.255.252
+IP.
+
+no shutdown
+Activa.
+
+exit
+Sale.
+
+ip route ...
+Rutas estáticas.
+
+end
+Sale.
+
+wr
+Guarda.

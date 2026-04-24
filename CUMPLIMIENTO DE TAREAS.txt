@@ -1,0 +1,40 @@
+CUMPLIMIENTO DE TAREAS
+
+1. Acceso SSH
+   Se configuró el acceso remoto seguro en todos los dispositivos utilizando SSH versión 2. Se crearon los usuarios “matricula” y “opelegrino” con contraseñas cifradas, y se configuraron las líneas VTY para permitir únicamente conexiones SSH con autenticación local.
+
+2. Configuración de VLANs
+   Se crearon las VLANs 300, 500 y 999 en los switches, asignando cada una a su respectivo grupo de usuarios (Estudiantes, Académicos y Administrativos).
+
+3. Enrutamiento entre VLANs
+   Se implementó enrutamiento inter-VLAN utilizando la técnica Router on a Stick en los routers R1 y R4 mediante subinterfaces.
+
+4. Configuración de HSRP
+   Se configuró HSRP en R1 y R4 para proporcionar redundancia. R4 fue configurado como router activo con mayor prioridad, mientras que R1 quedó como respaldo. Se utilizó la primera IP como gateway virtual y las siguientes para los routers.
+
+5. Spanning Tree
+   Se configuró el SW1 como puente raíz para las VLANs 300, 500 y 999 ajustando la prioridad del spanning-tree.
+
+6. Direccionamiento IP
+   Se asignaron direcciones IP a routers y switches según la topología proporcionada, asegurando correcta conectividad.
+
+7. DHCP
+   Se configuró el servidor DHCP en R3 para asignar direcciones IP automáticamente a todas las redes.
+
+8. EtherChannel (LACP)
+   Se configuró agregación de enlaces entre switches utilizando LACP para mejorar rendimiento y redundancia.
+
+9. Enrutamiento estático
+   Se implementaron rutas estáticas en los routers para permitir la comunicación entre todas las redes.
+
+10. Redes inalámbricas
+    Se configuraron tres perfiles inalámbricos (Duarte, Mella y Sánchez). Se asignaron correctamente a los APs según el requerimiento.
+
+11. Seguridad inalámbrica
+    Se configuró seguridad WPA2-Personal con contraseña Cisco123 y usuario Admin para todos los perfiles.
+
+12. Pruebas de conectividad
+    Se verificó conectividad total mediante pruebas de ping entre dispositivos.
+
+13. Guardado de configuración
+    Se guardaron todas las configuraciones en los dispositivos para evitar pérdida de datos.

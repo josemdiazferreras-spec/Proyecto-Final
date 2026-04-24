@@ -1,0 +1,22 @@
+                R3 (DHCP / SERVICIOS)
+                192.168.32.1
+                       │
+                ───────┘
+                       │ 192.168.100.4/30
+                       │
+                      R2 (CORE)
+             ┌─────────┼─────────┐
+             │         │         │
+     192.168.100.0     │     192.168.100.8
+             │         │         │
+            R1        │        R4
+         (Standby)    │     (Activo HSRP)
+             │         │
+             │         │
+            SW1 ===== SW2
+           (Root)   (Acceso)
+             │
+         VLANs (300,500,999)
+
+LADO DERECHO (SERVICIOS Y WIFI):
+R3 ─── Switch ─── APs ─── Laptops
